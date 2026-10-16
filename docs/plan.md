@@ -4,7 +4,8 @@
 
 - Tomáš plán přijal a přidal požadavek: statistiky návštěvnosti 2× týdně (viz níže). Pořadí změněno: nejdřív repo a README.
 - **Hotovo:** `git init -b main` (lokálně, bez commitu), `README.md` (česky).
-- **Čeká na Tomáše:** schválení textu README (pak první commit), OK na vytvoření veřejného repa na GitHubu a push, `testy.md` (zveřejnit v `docs/research/`, nebo nechat mimo repo), `CLAUDE.md` (zatím odloženo do založení projektu).
+- **Hotovo 2026-10-16:** README schválen, 2 commity, veřejné repo https://github.com/tomaspolak82-commits/menestarosti-playwright-tests (push hotový). Další krok: fáze testovací plán.
+- **Čeká na Tomáše:** připnout repo na profil (ručně), `testy.md` (zveřejnit v `docs/research/`, nebo nechat mimo repo), `CLAUDE.md` (zatím odloženo do založení projektu).
 - **Struktura a pravidla projektu (2026-10-16):** Tomáš dodal pravidla (Playwright + TypeScript, DRY, `src/pages|helpers|utils|data|config`, `requirements/` s user stories). Upravená verze půjde do `CLAUDE.md` repa. Odchylky od šablony: tři workflow podle času místo `tests.yml` na push, k tomu `docs/`, `CLAUDE.md`, `.mcp.json`, šablona bug reportu.
 - **Nález (neověřeno v prohlížeči):** úvodní stránka načítá Google tag `GT-KFT2ZZ39` (Site Kit) a v HTML není žádný cookie banner ani režim souhlasu. Ověřit v prohlížeči.
 
@@ -72,7 +73,7 @@ Co jsem ověřil (2026-10-14):
 | Lokátory | jen v `src/pages/`; pořadí `getByTestId` → `getByRole` → `getByLabel` → `getByText`, CSS jen s komentářem. Web testid nemá (WordPress), proto role; hry: `data-testid` (úprava her po Tomášově OK) |
 | Zařízení | počítač + mobil |
 | Upozornění | e-mail od GitHubu |
-| Repo | veřejné `tomaspolak82-commits/menestarosti-tests`, `C:\git\menestarosti-tests`, TypeScript |
+| Repo | veřejné `tomaspolak82-commits/menestarosti-playwright-tests` (vytvořeno 2026-10-16, popis + štítky), místní složka zůstává `C:\git\menestarosti-tests`, TypeScript |
 | Formulář | jen bez odeslání |
 | Známé chyby | issue + test jako očekávané selhání |
 | Výsledky | odznak v README + report na GitHub Pages |

@@ -39,9 +39,9 @@ Při psaní testů pomáhá [Claude Code](https://claude.com/claude-code): navrh
 
 Pořadí: atribut `data-testid` → role (tlačítko, odkaz, nadpis) → popisek pole → viditelný text. Jiné způsoby jen výjimečně a se zdůvodněním.
 
-Vzhledem k tomu, že není možnost primárně vyhledávat přes testid je vyhledávání prvků řešeno přes role. Stránky jsou postaveny Wordpress šabloně Kadence - ruční dopsání by dle mého v tomto projektu nepřineslo zásadní výhody. V případě většího projektu by bylo vhodnější použít testid.
+Web je postavený na WordPressu se šablonou Kadence, která atribut `data-testid` sama nepřidává. Ruční doplnění by u tohoto projektu nepřineslo zásadní výhodu, proto testy na webu hledají prvky přes role. U většího projektu bych `data-testid` doplnil.
 
-Atribut `data-testid` mají hry, které upravuji sám. Na webu ho WordPress neumožňuje, proto testy hledají prvky podle toho, jak je vidí a čtou návštěvník i čtečka obrazovky (například „tlačítko Odeslat“, „pole E-mail“). Takový test zároveň prověří, že web je srozumitelný i pro lidi, kteří ho používají se čtečkou.
+Role hledají prvky tak, jak je vidí a čte návštěvník i čtečka obrazovky (například „tlačítko Odeslat“, „pole E-mail“). Takový test zároveň prověří, že web je srozumitelný i pro lidi, kteří ho používají se čtečkou. Atribut `data-testid` mají hry, které upravuji sám.
 
 ## Struktura projektu
 
