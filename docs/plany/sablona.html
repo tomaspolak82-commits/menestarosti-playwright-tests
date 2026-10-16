@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plán – šablona</title>
+<style>
+  :root {
+    --bg: #f7f7f5; --text: #1f2328; --muted: #57606a; --arrow: #8c959f;
+    --work-bg: #e6e8eb; --work-border: #6e7781;
+    --check-bg: #d7f0ee; --check-border: #1b7f79;
+    --wait-bg: #ffe7cc; --wait-border: #c25e00;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 24px 16px; background: var(--bg); color: var(--text);
+         font: 17px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 860px; margin: 0 auto; }
+  h1 { font-size: 1.6rem; margin: 0 0 4px; }
+  .subtitle { color: var(--muted); margin: 0 0 20px; }
+  .legend { display: flex; flex-wrap: wrap; gap: 12px 20px; margin: 0 0 28px; padding: 0; list-style: none; }
+  .legend li { display: flex; align-items: center; gap: 8px; }
+  .swatch { width: 20px; height: 20px; border-radius: 4px; border: 2px solid; }
+  .phases { list-style: none; margin: 0; padding: 0; }
+  .phase { display: grid; grid-template-columns: 1fr; gap: 6px; }
+  .phase + .phase::before { content: "↓"; display: block; color: var(--arrow); font-size: 1.6rem;
+                            line-height: 1; margin: 6px 0 6px 24px; }
+  .box { border: 2px solid; border-radius: 8px; padding: 10px 14px; font-weight: 600; }
+  .box small { display: block; font-weight: 700; margin-top: 2px; }
+  .work  .box, .swatch.work  { background: var(--work-bg);  border-color: var(--work-border); }
+  .check .box, .swatch.check { background: var(--check-bg); border-color: var(--check-border); }
+  .wait  .box, .swatch.wait  { background: var(--wait-bg);  border-color: var(--wait-border); }
+  .wait .box small { color: var(--wait-border); }
+  .details { margin: 0; padding: 0 0 0 18px; color: var(--muted); }
+  @media (min-width: 640px) {
+    .phase { grid-template-columns: 260px 1fr; gap: 20px; align-items: center; }
+    .phase + .phase::before { grid-column: 1 / -1; margin-left: 110px; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1 id="title"></h1>
+  <p class="subtitle" id="subtitle"></p>
+  <ul class="legend">
+    <li><span class="swatch work"></span>Práce Clauda</li>
+    <li><span class="swatch check"></span>Ověřování (testy, build, zdroje)</li>
+    <li><span class="swatch wait"></span>Čeká na tebe</li>
+  </ul>
+  <ol class="phases" id="phases"></ol>
+</main>
+<script>
+  // Fill in title, subtitle and phases. type: "work" | "check" | "wait"
+  const plan = {
+    title: "Název plánu",
+    subtitle: "Stav k RRRR-MM-DD",
+    phases: [
+      { name: "Příprava", type: "work", details: ["Co se v této fázi děje"] },
+      { name: "Ověření", type: "check", details: ["Spustit testy"] },
+      { name: "Schválení", type: "wait", details: ["Tomáš zkontroluje výsledek"] }
+    ]
+  };
+
+  document.getElementById("title").textContent = plan.title;
+  document.getElementById("subtitle").textContent = plan.subtitle;
+  const list = document.getElementById("phases");
+  plan.phases.forEach((phase, i) => {
+    const li = document.createElement("li");
+    li.className = "phase " + phase.type;
+    const box = document.createElement("div");
+    box.className = "box";
+    box.textContent = (i + 1) + ". " + phase.name;
+    if (phase.type === "wait") {
+      const note = document.createElement("small");
+      note.textContent = "Čeká na tebe";
+      box.appendChild(note);
+    }
+    const ul = document.createElement("ul");
+    ul.className = "details";
+    phase.details.forEach(text => {
+      const item = document.createElement("li");
+      item.textContent = text;
+      ul.appendChild(item);
+    });
+    li.append(box, ul);
+    list.appendChild(li);
+  });
+</script>
+</body>
+</html>
