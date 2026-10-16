@@ -11,7 +11,7 @@ Projekt zároveň slouží jako ukázka mé práce QA testera: požadavky v podo
 | běh | kdy | co kontroluje |
 |---|---|---|
 | Denní rychlý test | každé ráno | hlavní stránky a menu, kontaktní formulář (vyplnění bez odeslání), načtení a spuštění her, úvodní stránka při zvětšení na 200 % |
-| Plná kontrola | v úterý a v pátek ráno a navíc po vydání nového článku, případně ručně | vše z denního testu, k tomu všechny články, funkčnost odkazů, přístupnost pro lidi se zdravotním omezením, čitelnost pro seniory (zvětšení stránky, velké písmo, velikost tlačítek, kontrast), základní SEO, stažení PDF souborů a jedno celé kolo her |
+| Plná kontrola | úterý a pátek ráno a navíc po vydání nového článku, případně ručně | vše z denního testu, k tomu všechny články, funkčnost odkazů, přístupnost pro lidi se zdravotním omezením, čitelnost pro seniory (zvětšení stránky, velké písmo, velikost tlačítek, kontrast), základní SEO, stažení PDF souborů a jedno celé kolo her |
 | Týdenní kontrola | v pátek ráno | rychlost webu (PageSpeed) a porovnání s minulým týdnem, verze pluginů WordPressu a jejich známé bezpečnostní chyby |
 | Statistiky návštěvnosti | dvakrát týdně | návštěvnost, nejčtenější obsah a doba strávená u obsahu, odkud návštěvníci přicházejí. Běží v samostatném soukromém repozitáři, výsledky nejsou veřejné. |
 
@@ -33,13 +33,13 @@ Co má web umět, popisují user stories ve složce `requirements/`. Každá má
 
 ### Role umělé inteligence
 
-Při psaní testů pomáhá [Claude Code](https://claude.com/claude-code): navrhuje user stories a testy, píše kód a vyhodnocuje výsledky. O tom, co je správný výsledek, ale rozhoduji já. Samotné automatické běhy probíhají bez AI, takže výsledek testu je pokaždé stejný a dá se zopakovat. Claude nesmí bez mého souhlasu oslabit nebo smazat žádnou kontrolu.
+Při psaní testů pomáhá [Claude Code](https://claude.com/claude-code): navrhuje user stories a testy, píše kód a vyhodnocuje výsledky. O tom, co je správný výsledek, rozhoduji sám. Samotné automatické běhy probíhají bez AI, takže výsledek testu je pokaždé stejný a dá se zopakovat. Claude nesmí bez mého souhlasu oslabit nebo smazat žádnou kontrolu.
 
 ### Jak testy hledají prvky na stránce
 
 Pořadí: atribut `data-testid` → role (tlačítko, odkaz, nadpis) → popisek pole → viditelný text. Jiné způsoby jen výjimečně a se zdůvodněním.
 
-Vzhledem k tomu, že není možnost primárně vyhledávat přes testid, a vzhledem k povaze webu a množství návštěvníků se prozatím vyhledávání prvků řeší přes role.
+Vzhledem k tomu, že není možnost primárně vyhledávat přes testid je vyhledávání prvků řešeno přes role. Stránky jsou postaveny Wordpress šabloně Kadence - ruční dopsání by dle mého v tomto projektu nepřineslo zásadní výhody. V případě většího projektu by bylo vhodnější použít testid.
 
 Atribut `data-testid` mají hry, které upravuji sám. Na webu ho WordPress neumožňuje, proto testy hledají prvky podle toho, jak je vidí a čtou návštěvník i čtečka obrazovky (například „tlačítko Odeslat“, „pole E-mail“). Takový test zároveň prověří, že web je srozumitelný i pro lidi, kteří ho používají se čtečkou.
 
