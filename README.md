@@ -10,8 +10,8 @@ Projekt zároveň slouží jako ukázka mé práce QA testera: požadavky v podo
 
 | běh | kdy | co kontroluje |
 |---|---|---|
-| Denní rychlý test | každé ráno | hlavní stránky a menu, kontaktní formulář (vyplnění bez odeslání), načtení a spuštění her |
-| Plná kontrola | v úterý a v pátek ráno a navíc po vydání nového článku, případně ručně | vše z denního testu, k tomu všechny články, funkčnost odkazů, přístupnost pro lidi se zdravotním omezením, základní SEO, stažení PDF souborů a jedno celé kolo her |
+| Denní rychlý test | každé ráno | hlavní stránky a menu, kontaktní formulář (vyplnění bez odeslání), načtení a spuštění her, úvodní stránka při zvětšení na 200 % |
+| Plná kontrola | v úterý a v pátek ráno a navíc po vydání nového článku, případně ručně | vše z denního testu, k tomu všechny články, funkčnost odkazů, přístupnost pro lidi se zdravotním omezením, čitelnost pro seniory (zvětšení stránky, velké písmo, velikost tlačítek, kontrast), základní SEO, stažení PDF souborů a jedno celé kolo her |
 | Týdenní kontrola | v pátek ráno | rychlost webu (PageSpeed) a porovnání s minulým týdnem, verze pluginů WordPressu a jejich známé bezpečnostní chyby |
 | Statistiky návštěvnosti | dvakrát týdně | návštěvnost, nejčtenější obsah a doba strávená u obsahu, odkud návštěvníci přicházejí. Běží v samostatném soukromém repozitáři, výsledky nejsou veřejné. |
 
