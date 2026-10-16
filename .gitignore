@@ -1,0 +1,14 @@
+# Dependencies
+node_modules/
+
+# Local secrets - never commit
+.env
+
+# Private notes (security, legal findings) - never commit
+private/
+
+# Playwright outputs
+playwright-report/
+test-results/
+blob-report/
+playwright/.cache/
