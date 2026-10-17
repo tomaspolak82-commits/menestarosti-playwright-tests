@@ -50,6 +50,8 @@ Web je postavený na WordPressu se šablonou Kadence, která atribut `data-testi
 
 Role hledají prvky tak, jak je vidí a čte návštěvník i čtečka obrazovky (například „tlačítko Odeslat“, „pole E-mail“). Takový test zároveň prověří, že web je srozumitelný i pro lidi, kteří ho používají se čtečkou. Atribut `data-testid` mají hry, které upravuji sám.
 
+Příklad, proč role: kontaktní formulář má skryté pole proti spamu se stejným popiskem „Email“. Hledání podle popisku (`getByLabel`) vyplnilo právě toto skryté pole, hledání podle role (`getByRole`) skrytá pole ignoruje.
+
 ## Struktura projektu
 
 ```

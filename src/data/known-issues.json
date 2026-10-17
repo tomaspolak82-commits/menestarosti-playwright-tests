@@ -1,0 +1,51 @@
+{
+  "_comment": "Known site bugs. Tests for them are marked test.fail() until fixed. ref = finding / issue.",
+  "h1Count": [
+    {
+      "path": "/about-us/",
+      "ref": "finding #8: two h1 on /about-us/"
+    },
+    {
+      "path": "/ochrana-osobnich-udaju/",
+      "ref": "finding #14: no h1 on privacy policy page"
+    },
+    {
+      "path": "/zapominani-senioru-odchod/",
+      "ref": "finding #15: two h1 in article"
+    }
+  ],
+  "notFoundWithoutHomeLink": {
+    "ref": "finding #9: 404 page has no link to home page in content"
+  },
+  "messageRequiredText": {
+    "ref": "finding #5: empty message shows template default text"
+  },
+  "messageMaxLength": {
+    "ref": "finding #10: message length limit not set yet (decided 3000)"
+  },
+  "invalidEmailMessage": [
+    {
+      "case": "without @",
+      "ref": "finding #12: invalid e-mail shows the empty e-mail message"
+    },
+    {
+      "case": "without local part",
+      "ref": "finding #12: invalid e-mail shows the empty e-mail message"
+    },
+    {
+      "case": "without domain",
+      "ref": "finding #12: invalid e-mail shows the empty e-mail message"
+    },
+    {
+      "case": "space inside",
+      "ref": "finding #12: invalid e-mail shows the empty e-mail message"
+    },
+    {
+      "case": "diacritics",
+      "ref": "finding #12: invalid e-mail shows the empty e-mail message"
+    }
+  ],
+  "homepageMobileLcp": {
+    "ref": "finding #11: homepage mobile LCP about 3.0 s (limit 2.5 s), pending decision"
+  }
+}

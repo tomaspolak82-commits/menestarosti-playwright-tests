@@ -1,0 +1,22 @@
+{
+  "invalidEmails": [
+    { "case": "without @", "value": "jan.novak.seznam.cz" },
+    { "case": "without local part", "value": "@seznam.cz" },
+    { "case": "without domain", "value": "jan.novak@" },
+    { "case": "space inside", "value": "jan novak@seznam.cz" },
+    { "case": "diacritics", "value": "jiří@seznam.cz" }
+  ],
+  "validEmails": [
+    { "case": "common", "value": "jan.novak@seznam.cz" },
+    { "case": "dots in name", "value": "jan.p.novak@seznam.cz" },
+    { "case": "plus sign", "value": "jan.novak+web@seznam.cz" },
+    { "case": "long domain", "value": "jan@velmi-dlouha-domena-pro-testovani-formulare.example.cz" },
+    { "case": "spaces around", "value": "  jan.novak@seznam.cz  " }
+  ],
+  "blankMessages": [
+    { "case": "empty", "value": "" },
+    { "case": "spaces only", "value": "     " }
+  ],
+  "sampleMessage": "Dobrý den, píšu delší zprávu, abych zjistil, jestli se mi text neztratí.",
+  "maxMessageLength": 3000
+}

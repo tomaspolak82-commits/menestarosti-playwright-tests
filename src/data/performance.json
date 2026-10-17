@@ -1,0 +1,8 @@
+{
+  "_comment": "homepageMinScore: worst of 5 baseline runs (87, 2026-10-17) minus 10. LCP/CLS: Google 'good' thresholds (web.dev/articles/vitals).",
+  "runs": 3,
+  "homepageMinScore": 77,
+  "lcpMaxMs": 2500,
+  "clsMax": 0.1,
+  "maxImageBytes": 512000
+}

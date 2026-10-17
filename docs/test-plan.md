@@ -103,7 +103,7 @@ Pořadí určuje, co se testuje nejdřív a nejdůkladněji. Při nedostatku ča
 Web nemá testovací kopii, testy proto běží proti skutečnému webu `https://menestarosti.cz`. Z toho plyne:
 
 - testy web jen čtou, nic neodesílají a nikam se nepřihlašují,
-- testy nesmí web zahltit: počet souběžně spuštěných testů je omezený,
+- testy nesmí web zahltit: jsou záměrně zpomalené. Běží vždy jen jeden test najednou, mezi dotazy na server a mezi testy v prohlížeči jsou pauzy (nastavení v `src/data/site.json`). Důvod: při plné rychlosti web během běhu na chvíli přestal odpovídat. Na rychlosti běhu nezáleží,
 - obsah se může měnit (nový článek, upravený text), proto testy nesmí záviset na konkrétních textech článků; seznam článků berou ze sitemapy.
 
 ### Prohlížeče a zařízení

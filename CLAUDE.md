@@ -59,7 +59,7 @@ Security checks and visitor statistics are NOT in this public repo (private repo
 
 - Tests only read the site: never submit the contact form, never log in, never change anything.
 - Contact form tests always leave at least one field invalid AND block every outgoing form request (two independent safeguards).
-- Keep the load low (`workers` in `playwright.config.ts`); no load or penetration testing.
+- Keep the load low: tests are deliberately slowed down (1 worker, pauses from `src/data/site.json` throttle) because the site stopped responding under full speed. Every request to the site goes through `src/helpers/polite-request.ts`; browser tests pause in the `page` fixture. `pause()` is only for pacing, never for synchronisation. No load or penetration testing.
 - Do not depend on article texts; the list of pages comes from the sitemap.
 
 ## Secrets

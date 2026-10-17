@@ -9,6 +9,19 @@
 - **Struktura a pravidla projektu (2026-10-16):** Tomáš dodal pravidla (Playwright + TypeScript, DRY, `src/pages|helpers|utils|data|config`, `requirements/` s user stories). Upravená verze půjde do `CLAUDE.md` repa. Odchylky od šablony: tři workflow podle času místo `tests.yml` na push, k tomu `docs/`, `CLAUDE.md`, `.mcp.json`, šablona bug reportu.
 - **Nález (neověřeno v prohlížeči):** úvodní stránka načítá Google tag `GT-KFT2ZZ39` (Site Kit) a v HTML není žádný cookie banner ani režim souhlasu. Ověřit v prohlížeči.
 
+### Stav 2026-10-17 odpoledne: první testy
+
+- US-001 až US-003 schváleny. Napsány testy: `tests/navigation/` (navigation.spec.ts, site-availability.api.spec.ts), `tests/contact-form/contact-form.spec.ts`, `tests/performance/pagespeed.api.spec.ts`; Page Objecty ContentPage, ContactPage, MainMenu, Footer; data v `src/data/`; projekt `api` pro kontroly bez prohlížeče. Známé chyby v `src/data/known-issues.json` (test.fail).
+- Výsledek posledního plného běhu: 165 prošlo, 12 selhalo – všech 12 kvůli nedostupnosti webu (ERR_CONNECTION_TIMED_OUT / ECONNRESET na začátku běhu). Stejný vzorec ve dvou bězích → podezření, že hosting omezuje zátěž z testů. Čeká na rozhodnutí o snížení zátěže.
+- Rozhodnuto (Tomáš): testy výrazně zpomalit → 1 worker, pauza 1,5 s před každým dotazem na web, 3 s po každém testu v prohlížeči (`src/data/site.json`). Plný běh se zpomalením zatím nespuštěn celý (ověřeny 2 testy).
+- Tomáš projde nálezy v `private/nalezy.md` (12: hláška u neplatného e-mailu; 14 a 15: nadpisy h1). LCP (11) je známý problém, řešení zatím není.
+- Commitnuto lokálně, push čeká na OK.
+- Doloženo selhání proti úmyslným chybám (5 testů, data pak vrácena).
+- Testy blokují Google Analytics (nezkreslují statistiky) a odesílání formuláře.
+- Nové nálezy 9–15 v `private/nalezy.md`. AK3 (US-002) ukázalo chybu formuláře (nález 12). AK4 data opravena: „tečka před zavináčem“ byla chybně zadaná hodnota → „více teček ve jméně“.
+- PageSpeed vrací pro stejnou adresu výsledek z mezipaměti → každé měření má unikátní parametr v adrese. Hranice skóre 77 (nejhorší z 5 měření 87 − 10). Data od skutečných návštěvníků nejsou.
+- AK3 týdenní měření (US-003) zatím nenapsáno: potřebuje ukládání historie a týdenní workflow.
+
 ### Stav 2026-10-17
 
 - US-001 až US-003 upraveny po posouzení jinou AI (Tomáš souhlasil s mým hodnocením). Hlavní změny: kontroly bez prohlížeče (sitemapa, přesměrování, PageSpeed) jen jednou za běh; formulářové testy vždy s jedním neplatným polem + blokace odeslání; nová AK (zachování textu, svázané popisky, aria); AK o chybách PageSpeed a chybějícím klíči přesunuty do test plánu a CLAUDE.md; denní rychlost = medián ze 3 měření + LCP/CLS.
