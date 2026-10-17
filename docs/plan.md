@@ -9,6 +9,14 @@
 - **Struktura a pravidla projektu (2026-10-16):** Tomáš dodal pravidla (Playwright + TypeScript, DRY, `src/pages|helpers|utils|data|config`, `requirements/` s user stories). Upravená verze půjde do `CLAUDE.md` repa. Odchylky od šablony: tři workflow podle času místo `tests.yml` na push, k tomu `docs/`, `CLAUDE.md`, `.mcp.json`, šablona bug reportu.
 - **Nález (neověřeno v prohlížeči):** úvodní stránka načítá Google tag `GT-KFT2ZZ39` (Site Kit) a v HTML není žádný cookie banner ani režim souhlasu. Ověřit v prohlížeči.
 
+### Stav: úprava struktury (kroky 0–4) PŘERUŠENA uprostřed kroku 0, nic necommitováno
+
+- Výchozí stav (plný běh): 128 prošlo, 49 očekávaných selhání, 3 přeskočeny, 0 skutečných selhání (22 síťových selhání prošlo na druhý pokus). Seznam 180 testů uložen ve scratchpadu.
+- Hotovo jen v pracovní složce (staged): `git mv tests src/tests`, `git mv src/data src/config/data`.
+- `.env.example` chybí v pracovní složce (v Gitu je, obnovit `git restore .env.example`, pak `git mv` do `src/config/`). Příkazy s `.env` blokovalo povolení v Claude Code.
+- `.env` je stále v kořeni (nepřesunut). Importy, testDir, tsconfig, ESLint ještě neupraveny → testy teď nejdou spustit.
+- Pokračovat krokem 0 od úprav cest, pak kroky 1–4 podle zadání (kontroly po krocích, pravidlo síťových chyb, commit po každém kroku, bez pushe).
+
 ### Stav 2026-10-17 odpoledne: první testy
 
 - US-001 až US-003 schváleny. Napsány testy: `tests/navigation/` (navigation.spec.ts, site-availability.api.spec.ts), `tests/contact-form/contact-form.spec.ts`, `tests/performance/pagespeed.api.spec.ts`; Page Objecty ContentPage, ContactPage, MainMenu, Footer; data v `src/data/`; projekt `api` pro kontroly bez prohlížeče. Známé chyby v `src/data/known-issues.json` (test.fail).
