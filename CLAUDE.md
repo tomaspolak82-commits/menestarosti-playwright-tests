@@ -50,9 +50,15 @@ Security checks and visitor statistics are NOT in this public repo (private repo
 - No hardcoded URLs: `baseURL` comes from settings, tests use relative paths (`page.goto('/kontakty/')`).
 - Data and expected messages in `src/data/*.json`; generated data from `src/utils/`.
 
+## Browser vs. request checks
+
+- Checks that need no browser (sitemap URLs, redirects with `maxRedirects: 0`, PageSpeed API, file sizes) use the `request` fixture and run once per run in a separate project, not in all five browser projects.
+- PageSpeed errors are environment failures, never "site is slow". A missing variable fails fast with a clear message (`src/config/settings.ts`).
+
 ## Live site rules
 
-- Tests only read the site: never submit the contact form (block its request in tests), never log in, never change anything.
+- Tests only read the site: never submit the contact form, never log in, never change anything.
+- Contact form tests always leave at least one field invalid AND block every outgoing form request (two independent safeguards).
 - Keep the load low (`workers` in `playwright.config.ts`); no load or penetration testing.
 - Do not depend on article texts; the list of pages comes from the sitemap.
 

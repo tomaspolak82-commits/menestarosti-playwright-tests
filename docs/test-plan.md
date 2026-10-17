@@ -70,13 +70,13 @@ Pořadí určuje, co se testuje nejdřív a nejdůkladněji. Při nedostatku ča
 
 | sada | kdy | obsah |
 |---|---|---|
-| Denní (`@smoke`) | každé ráno | hlavní stránky se načtou, menu a patička vedou správně, formulář: pole, popisky a chybová hlášení bez odeslání, hry se načtou a spustí, úvodní stránka při zvětšení na 200 %, rychlost úvodní stránky na mobilu (jedno měření) |
+| Denní (`@smoke`) | každé ráno | hlavní stránky se načtou, menu a patička vedou správně, formulář: pole, popisky a chybová hlášení bez odeslání, hry se načtou a spustí, úvodní stránka při zvětšení na 200 %, rychlost úvodní stránky na mobilu (prostřední hodnota ze tří měření) |
 | Plná (`@full`) | úterý a pátek ráno, po vydání článku, ručně | vše z denní sady a navíc všechny stránky a články ze sitemapy, odkazy, PDF ke stažení, přístupnost (axe), čitelnost na všech stránkách, SEO, jedno celé kolo her |
 | Týdenní | pátek ráno | rychlost: tři měření (výsledkem je prostřední hodnota), mobil i počítač, úvodní stránka, jeden článek a stránka s hrami, porovnání s minulým týdnem |
 | Bezpečnost | jednou týdně | pasivní kontroly v soukromém repozitáři (viz část 2) |
 
 - Sady se rozlišují značkou u testu, ne složkou. Jeden test tak může patřit do denní i plné sady.
-- Měření rychlosti probíhá jednou za běh, ne v každém z pěti prohlížečů: měří ho služba Google PageSpeed, ne prohlížeč v testu.
+- Kontroly, které nepotřebují prohlížeč (adresy ze sitemapy, přesměrování, rychlost přes PageSpeed, velikost souborů), běží jako přímé dotazy na server jen jednou za běh, ne v každém z pěti prohlížečů. Šetří to čas i ostrý web.
 - Nový článek se pozná ráno podle seznamu změněných článků, který web zveřejňuje přes své rozhraní (REST API).
 - Externí odkazy (na jiné weby) se kontrolují jen na „stránka neexistuje“ (chyby 404 a 410) a s jedním opakováním. Cizí web může být chvíli nedostupný a to není chyba našeho webu.
 
@@ -159,6 +159,11 @@ Každé selhání se zařadí do jedné ze tří skupin:
 - Dodržuje pravidla projektu (lokátory jen v Page Objectech, žádné pevné čekání, žádné natvrdo zapsané adresy).
 - Typová kontrola a ESLint prošly.
 - Schválil jsem očekávaný výsledek.
+
+### Chyby testovací infrastruktury
+
+- Když PageSpeed neodpoví nebo vrátí chybu, výsledek se nevyhodnotí jako „web je pomalý“, ale jako chyba prostředí.
+- Když chybí potřebný klíč nebo proměnná prostředí, test hned selže se srozumitelnou hláškou, co chybí.
 
 ### Hranice pro rychlost
 

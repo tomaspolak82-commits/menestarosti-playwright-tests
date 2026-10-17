@@ -9,6 +9,15 @@
 - **Struktura a pravidla projektu (2026-10-16):** Tomáš dodal pravidla (Playwright + TypeScript, DRY, `src/pages|helpers|utils|data|config`, `requirements/` s user stories). Upravená verze půjde do `CLAUDE.md` repa. Odchylky od šablony: tři workflow podle času místo `tests.yml` na push, k tomu `docs/`, `CLAUDE.md`, `.mcp.json`, šablona bug reportu.
 - **Nález (neověřeno v prohlížeči):** úvodní stránka načítá Google tag `GT-KFT2ZZ39` (Site Kit) a v HTML není žádný cookie banner ani režim souhlasu. Ověřit v prohlížeči.
 
+### Stav 2026-10-17
+
+- US-001 až US-003 upraveny po posouzení jinou AI (Tomáš souhlasil s mým hodnocením). Hlavní změny: kontroly bez prohlížeče (sitemapa, přesměrování, PageSpeed) jen jednou za běh; formulářové testy vždy s jedním neplatným polem + blokace odeslání; nová AK (zachování textu, svázané popisky, aria); AK o chybách PageSpeed a chybějícím klíči přesunuty do test plánu a CLAUDE.md; denní rychlost = medián ze 3 měření + LCP/CLS.
+- Rozhodnuto: Facebook ve stejné záložce; adresy her jsou záměr; e-mail s diakritikou odmítá prohlížeč (testuje se srozumitelná hláška).
+- Rozhodnuto (Tomáš): zásady ochrany mimo sitemapu záměrně; hlášky přátelské, smajlík OK; délka zprávy omezená (návrh 3 000 znaků, AK10); adresu stránky s hrami do budoucna upravit (+ 301).
+- Rozhodnuto: hláška prázdné zprávy „Prosím napište nám ještě zprávu :)“, limit 3 000 znaků, e-mail bez koncovky = budoucí vylepšení (p4). Commitnuto a pushnuto 2026-10-17.
+- Nový nález: dva h1 na `/about-us/` (`private/nalezy.md` č. 8).
+- Necommitováno; push předchozích 2 commitů stále čeká na OK.
+
 ### Stav 2026-10-16, konec dne
 
 - Commitnuto lokálně (Tomášovo OK „comitni aktuální stav“), **push zatím neproběhl, čeká na OK**.
