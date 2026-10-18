@@ -1,4 +1,5 @@
 import type { APIRequestContext } from '@playwright/test';
+import { pages } from '../config/data/pages';
 import { site } from '../config/data/site';
 import { extractFooterLinks, extractSitemapLocations, toPath } from '../utils/html';
 import { politeGet } from './polite-request';
@@ -14,7 +15,7 @@ export async function collectSitePaths(request: APIRequestContext, origin: strin
       if (path) paths.add(path);
     }
   }
-  const home = await (await politeGet(request, '/')).text();
+  const home = await (await politeGet(request, pages.home)).text();
   for (const href of extractFooterLinks(home)) {
     const path = toPath(href, origin);
     if (path) paths.add(path);

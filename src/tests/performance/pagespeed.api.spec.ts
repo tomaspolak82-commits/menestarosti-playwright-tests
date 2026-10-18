@@ -1,6 +1,7 @@
 import { test, expect } from '../../fixtures';
 import knownIssues from '../../config/data/known-issues.json';
 import perf from '../../config/data/performance.json';
+import { pages } from '../../config/data/pages';
 import { site } from '../../config/data/site';
 import { settings } from '../../config/settings';
 import { measureMedian, type PageSpeedResult } from '../../helpers/pagespeed';
@@ -15,7 +16,7 @@ test.describe('US-003: Homepage speed on mobile', { tag: '@smoke' }, () => {
   test.beforeAll(async ({ playwright }) => {
     test.setTimeout(300_000);
     const request = await playwright.request.newContext();
-    homepage = await measureMedian(request, new URL('/', settings.baseURL).href, 'mobile', perf.runs);
+    homepage = await measureMedian(request, new URL(pages.home, settings.baseURL).href, 'mobile', perf.runs);
     await request.dispose();
   });
 
