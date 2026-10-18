@@ -9,13 +9,12 @@
 - **Struktura a pravidla projektu (2026-10-16):** Tomáš dodal pravidla (Playwright + TypeScript, DRY, `src/pages|helpers|utils|data|config`, `requirements/` s user stories). Upravená verze půjde do `CLAUDE.md` repa. Odchylky od šablony: tři workflow podle času místo `tests.yml` na push, k tomu `docs/`, `CLAUDE.md`, `.mcp.json`, šablona bug reportu.
 - **Nález (neověřeno v prohlížeči):** úvodní stránka načítá Google tag `GT-KFT2ZZ39` (Site Kit) a v HTML není žádný cookie banner ani režim souhlasu. Ověřit v prohlížeči.
 
-### Stav: úprava struktury (kroky 0–4) PŘERUŠENA uprostřed kroku 0, nic necommitováno
+### Stav 2026-10-18: úprava struktury (kroky 0–4) hotová, push čeká na OK
 
-- Výchozí stav (plný běh): 128 prošlo, 49 očekávaných selhání, 3 přeskočeny, 0 skutečných selhání (22 síťových selhání prošlo na druhý pokus). Seznam 180 testů uložen ve scratchpadu.
-- Hotovo jen v pracovní složce (staged): `git mv tests src/tests`, `git mv src/data src/config/data`.
-- `.env.example` chybí v pracovní složce (v Gitu je, obnovit `git restore .env.example`, pak `git mv` do `src/config/`). Příkazy s `.env` blokovalo povolení v Claude Code.
-- `.env` je stále v kořeni (nepřesunut). Importy, testDir, tsconfig, ESLint ještě neupraveny → testy teď nejdou spustit.
-- Pokračovat krokem 0 od úprav cest, pak kroky 1–4 podle zadání (kontroly po krocích, pravidlo síťových chyb, commit po každém kroku, bez pushe).
+- Testy v `src/tests/`, data v `src/config/data/`, `.env` a `.env.example` v `src/config/`. Cesty stránek jen v `src/config/data/pages.ts` (menu, site a footer převedeny z JSON na TS).
+- Menu se hledá podle struktury, ne podle jména (desktop: navigace v hlavičce, mobil: navigace v panelu `#mobile-drawer`).
+- Rozhodnuto (Tomáš): hlavní menu se má pro čtečku jmenovat „Hlavní menu“ na počítači i mobilu → nové AK8 v US-001, test vedený jako známá chyba (nález 13).
+- Výchozí plný běh: 128 prošlo, 49 očekávaných selhání, 3 přeskočeny. Po kroku 3: 128 / 54 / 3 (+5 = AK8 v pěti prohlížečích), 0 skutečných selhání; síťová selhání prošla na druhý pokus.
 
 ### Stav 2026-10-17 odpoledne: první testy
 
@@ -144,7 +143,7 @@ Co jsem ověřil (2026-10-14):
 - Jeden řízený postup, žádný roj agentů. Skilly případně později v `knowledge-base/skills/` (pravidlo databáze), ne v `.claude/skills` repa.
 - Nepřebíráme: evaly, healer, mutační testy, multiagentní role. Jsou pro aplikaci s vývojovým týmem, ne pro malý ostrý web.
 
-## Struktura repa (schváleno 2026-10-16)
+## Struktura repa (schváleno 2026-10-16, testy a data přesunuty do src/ 2026-10-18)
 
 ```
 menestarosti-tests/
@@ -156,12 +155,13 @@ menestarosti-tests/
 ├── src/
 │   ├── pages/  BasePage.ts  HomePage.ts  ArticlePage.ts  ContactPage.ts  GamesPage.ts
 │   │   └── components/          MainMenu.ts, Footer.ts
-│   └── helpers/  utils/  data/  config/settings.ts  fixtures.ts
-├── tests/
-│   ├── navigation/  pages/  articles/  contact-form/  games/
-│   └── accessibility/  readability/  seo/  links/  downloads/  performance/
-│       (wordpress-plugins přesunuto do soukromého repa s bezpečnostními kontrolami)
-├── playwright.config.ts  .env.example  .gitignore  package.json  tsconfig.json
+│   ├── helpers/  utils/  fixtures.ts
+│   ├── config/  settings.ts  .env.example  data/ (pages.ts, testovací data)
+│   └── tests/
+│       ├── navigation/  pages/  articles/  contact-form/  games/
+│       └── accessibility/  readability/  seo/  links/  downloads/  performance/
+│           (wordpress-plugins přesunuto do soukromého repa s bezpečnostními kontrolami)
+├── playwright.config.ts  .gitignore  package.json  tsconfig.json
 └── CLAUDE.md  README.md  .mcp.json
 ```
 

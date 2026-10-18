@@ -60,10 +60,10 @@ docs/                testovací plán, plán projektu, diagramy
 src/pages/           jak se web ovládá: stránky a jejich prvky (Page Objecty)
 src/helpers/         společné kroky přes více stránek
 src/utils/           pomocné funkce bez prohlížeče
-src/data/            očekávané texty a testovací data
-src/config/          nastavení prostředí
-tests/               co se testuje, rozdělené podle oblastí webu
-.github/workflows/   kdy se testy spouštějí
+src/config/data/     očekávané texty, testovací data a adresy stránek (pages.ts)
+src/config/          nastavení prostředí (.env, .env.example)
+src/tests/           co se testuje, rozdělené podle oblastí webu
+.github/workflows/   kdy se testy spouštějí (připravuje se)
 ```
 
 Každá informace je v projektu jen jednou. Když se na webu změní třeba text tlačítka, opravuje se na jediném místě. Pravidla, jak se testy píšou, jsou v [CLAUDE.md](CLAUDE.md).
@@ -86,10 +86,10 @@ git clone https://github.com/tomaspolak82-commits/menestarosti-playwright-tests.
 cd menestarosti-playwright-tests
 npm ci
 npx playwright install
-Copy-Item .env.example .env
+Copy-Item src\config\.env.example src\config\.env
 ```
 
-Do souboru `.env` doplň `BASE_URL=https://menestarosti.cz` (a pro měření rychlosti klíč `PAGESPEED_API_KEY`). Pak:
+Do souboru `src\config\.env` doplň `BASE_URL=https://menestarosti.cz` (a pro měření rychlosti klíč `PAGESPEED_API_KEY`). Pak:
 
 ```powershell
 npm test              # všechny testy
