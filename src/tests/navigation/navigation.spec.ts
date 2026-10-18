@@ -2,6 +2,7 @@ import { test, expect } from '../../fixtures';
 import { footer as footerData } from '../../config/data/footer';
 import knownIssues from '../../config/data/known-issues.json';
 import { menu } from '../../config/data/menu';
+import messages from '../../config/data/messages.json';
 import { pages } from '../../config/data/pages';
 import { site } from '../../config/data/site';
 import { settings } from '../../config/settings';
@@ -60,5 +61,12 @@ test.describe('US-001: Navigation', () => {
     test.fail(true, knownIssues.notFoundWithoutHomeLink.ref);
     await contentPage.open(site.notFoundPath);
     await expect(contentPage.homeLinkInContent(new URL(pages.home, settings.baseURL).href)).not.toHaveCount(0);
+  });
+
+  test('AK8: main menu has a Czech name for screen readers (known issue)', { tag: '@full' }, async ({ contentPage, mainMenu }) => {
+    test.fail(true, knownIssues.mainMenuName.ref);
+    await contentPage.open(pages.home);
+    await mainMenu.openIfMobile();
+    await expect(mainMenu.navigation).toHaveAccessibleName(messages.mainMenuName);
   });
 });

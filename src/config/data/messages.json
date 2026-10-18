@@ -2,5 +2,6 @@
   "contactSubmitButton": "Odeslat zprávu",
   "emailRequired": "Prosím vyplňte ještě email :)",
   "emailInvalid": "Ve vašem emailu něco chybí. Zkontrolujte ho prosím.",
-  "messageRequired": "Prosím napište nám ještě zprávu :)"
+  "messageRequired": "Prosím napište nám ještě zprávu :)",
+  "mainMenuName": "Hlavní menu"
 }

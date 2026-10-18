@@ -47,5 +47,8 @@
   ],
   "homepageMobileLcp": {
     "ref": "finding #11: homepage mobile LCP about 3.0 s (limit 2.5 s), pending decision"
+  },
+  "mainMenuName": {
+    "ref": "finding #13: main menu is named \"Primary Mobile\" (mobile) and \"Primární\" (desktop) for screen readers, decided \"Hlavní menu\""
   }
 }

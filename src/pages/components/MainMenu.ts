@@ -1,6 +1,7 @@
 import type { Locator, Page } from '@playwright/test';
 
-// Desktop shows the "Primární" navigation; mobile hides it behind the "Otevřít nabídku" drawer.
+// Desktop shows the navigation in the page header; mobile hides it behind the "Otevřít nabídku" drawer.
+// Neither is found by its accessible name: the names are about to be renamed (known issue).
 export class MainMenu {
   readonly openButton: Locator;
   readonly closeButton: Locator;
@@ -12,9 +13,10 @@ export class MainMenu {
   ) {
     this.openButton = page.getByRole('button', { name: 'Otevřít nabídku' });
     this.closeButton = page.getByRole('button', { name: 'Zavřít nabídku' });
+    // The Kadence drawer has no ARIA role, so its id is the only stable hook; the navigation inside is found by role.
     this.navigation = isMobile
-      ? page.getByRole('navigation', { name: 'Primary Mobile' })
-      : page.getByRole('navigation', { name: 'Primární' });
+      ? page.locator('#mobile-drawer').getByRole('navigation')
+      : page.getByRole('banner').getByRole('navigation');
   }
 
   // What the visitor sees first: the menu itself on desktop, the open button on mobile.
