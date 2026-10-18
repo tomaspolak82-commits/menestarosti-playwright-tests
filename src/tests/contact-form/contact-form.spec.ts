@@ -1,7 +1,7 @@
-import { test, expect } from '../../src/fixtures';
-import form from '../../src/data/contact-form.json';
-import knownIssues from '../../src/data/known-issues.json';
-import messages from '../../src/data/messages.json';
+import { test, expect } from '../../fixtures';
+import form from '../../config/data/contact-form.json';
+import knownIssues from '../../config/data/known-issues.json';
+import messages from '../../config/data/messages.json';
 
 // Every test leaves at least one field invalid, and ContactPage blocks all sending requests.
 test.describe('US-002: Contact form', () => {

@@ -2,9 +2,9 @@ import { defineConfig, devices } from '@playwright/test';
 import { settings } from './src/config/settings';
 
 export default defineConfig({
-  testDir: './tests',
+  testDir: './src/tests',
   // Deliberately slow: the live site stopped responding under full-speed runs (2026-10-17).
-  // One test at a time plus pauses (src/data/site.json, throttle). There is no hurry.
+  // One test at a time plus pauses (src/config/data/site.json, throttle). There is no hurry.
   fullyParallel: false,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 0,

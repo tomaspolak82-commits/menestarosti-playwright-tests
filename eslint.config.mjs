@@ -17,7 +17,7 @@ export default defineConfig(
     extends: [js.configs.recommended, tseslint.configs.recommended],
   },
   {
-    files: ['tests/**/*.ts'],
+    files: ['src/tests/**/*.ts'],
     extends: [playwright.configs['flat/recommended']],
     rules: {
       'playwright/no-wait-for-timeout': 'error',
@@ -27,7 +27,7 @@ export default defineConfig(
     },
   },
   {
-    files: ['tests/**/*.ts', 'src/helpers/**/*.ts'],
+    files: ['src/tests/**/*.ts', 'src/helpers/**/*.ts'],
     rules: {
       'no-restricted-syntax': [
         'error',

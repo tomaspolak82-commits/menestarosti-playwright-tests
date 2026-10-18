@@ -2,12 +2,12 @@ import path from 'path';
 import dotenv from 'dotenv';
 
 // Local runs read .env; in CI the variables come from the workflow.
-dotenv.config({ path: path.resolve(__dirname, '../../.env'), quiet: true });
+dotenv.config({ path: path.resolve(__dirname, '.env'), quiet: true });
 
 function required(name: string): string {
   const value = process.env[name];
   if (!value) {
-    throw new Error(`Missing environment variable ${name}. Add it to .env (see .env.example).`);
+    throw new Error(`Missing environment variable ${name}. Add it to src/config/.env (see src/config/.env.example).`);
   }
   return value;
 }

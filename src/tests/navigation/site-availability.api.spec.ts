@@ -1,10 +1,10 @@
-import { test, expect } from '../../src/fixtures';
-import knownIssues from '../../src/data/known-issues.json';
-import site from '../../src/data/site.json';
-import { politeGet } from '../../src/helpers/polite-request';
-import { collectSitePaths } from '../../src/helpers/site-urls';
-import { settings } from '../../src/config/settings';
-import { countH1 } from '../../src/utils/html';
+import { test, expect } from '../../fixtures';
+import knownIssues from '../../config/data/known-issues.json';
+import site from '../../config/data/site.json';
+import { politeGet } from '../../helpers/polite-request';
+import { collectSitePaths } from '../../helpers/site-urls';
+import { settings } from '../../config/settings';
+import { countH1 } from '../../utils/html';
 
 const knownH1Issues = new Set(knownIssues.h1Count.map((issue) => issue.path));
 

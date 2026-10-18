@@ -1,6 +1,6 @@
 import type { Locator, Response } from '@playwright/test';
 import { settings } from '../config/settings';
-import messages from '../data/messages.json';
+import messages from '../config/data/messages.json';
 import { BasePage } from './BasePage';
 
 export class ContactPage extends BasePage {

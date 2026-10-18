@@ -1,12 +1,12 @@
-import { test, expect } from '../../src/fixtures';
-import knownIssues from '../../src/data/known-issues.json';
-import perf from '../../src/data/performance.json';
-import site from '../../src/data/site.json';
-import { settings } from '../../src/config/settings';
-import { measureMedian, type PageSpeedResult } from '../../src/helpers/pagespeed';
-import { politeGet, politeHead } from '../../src/helpers/polite-request';
-import { collectSitePaths } from '../../src/helpers/site-urls';
-import { extractImageUrls } from '../../src/utils/html';
+import { test, expect } from '../../fixtures';
+import knownIssues from '../../config/data/known-issues.json';
+import perf from '../../config/data/performance.json';
+import site from '../../config/data/site.json';
+import { settings } from '../../config/settings';
+import { measureMedian, type PageSpeedResult } from '../../helpers/pagespeed';
+import { politeGet, politeHead } from '../../helpers/polite-request';
+import { collectSitePaths } from '../../helpers/site-urls';
+import { extractImageUrls } from '../../utils/html';
 
 test.describe('US-003: Homepage speed on mobile', { tag: '@smoke' }, () => {
   test.describe.configure({ mode: 'serial', timeout: 300_000 });

@@ -1,5 +1,5 @@
 import type { APIRequestContext, APIResponse } from '@playwright/test';
-import site from '../data/site.json';
+import site from '../config/data/site.json';
 import { pause } from '../utils/throttle';
 
 type GetOptions = Parameters<APIRequestContext['get']>[1];

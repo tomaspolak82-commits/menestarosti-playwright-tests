@@ -1,9 +1,9 @@
-import { test, expect } from '../../src/fixtures';
-import footerData from '../../src/data/footer.json';
-import knownIssues from '../../src/data/known-issues.json';
-import menu from '../../src/data/menu.json';
-import site from '../../src/data/site.json';
-import { settings } from '../../src/config/settings';
+import { test, expect } from '../../fixtures';
+import footerData from '../../config/data/footer.json';
+import knownIssues from '../../config/data/known-issues.json';
+import menu from '../../config/data/menu.json';
+import site from '../../config/data/site.json';
+import { settings } from '../../config/settings';
 
 test.describe('US-001: Navigation', () => {
   for (const path of site.samplePages) {
