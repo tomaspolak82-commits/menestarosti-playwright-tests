@@ -47,6 +47,7 @@ Security checks and visitor statistics are NOT in this public repo (private repo
 - Preference: `getByTestId` → `getByRole` → `getByLabel` → `getByText`. The WordPress site has no test ids, so the site uses roles; games use `data-testid`. CSS/XPath only when nothing else works, with a comment why.
 - A Page Object holds actions of one page, no assertions. Every Page Object extends `BasePage`.
 - Names used to find elements (button text, accessible names) stay in the Page Object, not in tests or helpers.
+  Exception: a text that a requirement also states (e.g. a link or button text in an AK) lives in `src/config/data/` and the Page Object reads it from there.
 
 ## Tests
 
