@@ -1,7 +1,7 @@
 import { test, expect } from '../../fixtures';
 import knownIssues from '../../config/data/known-issues.json';
 import perf from '../../config/data/performance.json';
-import site from '../../config/data/site.json';
+import { site } from '../../config/data/site';
 import { settings } from '../../config/settings';
 import { measureMedian, type PageSpeedResult } from '../../helpers/pagespeed';
 import { politeGet, politeHead } from '../../helpers/polite-request';

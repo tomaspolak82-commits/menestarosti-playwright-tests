@@ -1,5 +1,5 @@
 import type { Locator, Page } from '@playwright/test';
-import footer from '../../config/data/footer.json';
+import { footer } from '../../config/data/footer';
 
 export class Footer {
   readonly root: Locator;

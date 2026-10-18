@@ -1,5 +1,5 @@
 import type { APIRequestContext } from '@playwright/test';
-import site from '../config/data/site.json';
+import { site } from '../config/data/site';
 import { extractFooterLinks, extractSitemapLocations, toPath } from '../utils/html';
 import { politeGet } from './polite-request';
 

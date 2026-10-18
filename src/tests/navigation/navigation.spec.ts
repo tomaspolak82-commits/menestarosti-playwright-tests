@@ -1,8 +1,8 @@
 import { test, expect } from '../../fixtures';
-import footerData from '../../config/data/footer.json';
+import { footer as footerData } from '../../config/data/footer';
 import knownIssues from '../../config/data/known-issues.json';
-import menu from '../../config/data/menu.json';
-import site from '../../config/data/site.json';
+import { menu } from '../../config/data/menu';
+import { site } from '../../config/data/site';
 import { settings } from '../../config/settings';
 
 test.describe('US-001: Navigation', () => {

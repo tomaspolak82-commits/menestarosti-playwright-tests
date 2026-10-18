@@ -1,10 +1,11 @@
 import type { Locator, Response } from '@playwright/test';
 import { settings } from '../config/settings';
 import messages from '../config/data/messages.json';
+import { pages } from '../config/data/pages';
 import { BasePage } from './BasePage';
 
 export class ContactPage extends BasePage {
-  protected readonly path = '/kontakty/';
+  protected readonly path = pages.contact;
 
   // Role locators on purpose: the form has a hidden anti-spam field also labelled "Email".
   // getByLabel('Email') can hit that hidden field, getByRole ignores it (aria-hidden).

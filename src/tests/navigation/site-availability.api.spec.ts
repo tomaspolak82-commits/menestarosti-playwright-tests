@@ -1,6 +1,6 @@
 import { test, expect } from '../../fixtures';
 import knownIssues from '../../config/data/known-issues.json';
-import site from '../../config/data/site.json';
+import { site } from '../../config/data/site';
 import { politeGet } from '../../helpers/polite-request';
 import { collectSitePaths } from '../../helpers/site-urls';
 import { settings } from '../../config/settings';

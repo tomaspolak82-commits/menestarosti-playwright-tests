@@ -1,5 +1,5 @@
 import { test as base } from '@playwright/test';
-import site from './config/data/site.json';
+import { site } from './config/data/site';
 import { pause } from './utils/throttle';
 import { ContactPage } from './pages/ContactPage';
 import { ContentPage } from './pages/ContentPage';

@@ -1,8 +1,0 @@
-[
-  { "name": "Domů", "path": "/" },
-  { "name": "Články", "path": "/clanky/" },
-  { "name": "Hry", "path": "/hry-pro-senior/" },
-  { "name": "Materiál ke stažení", "path": "/materialy-ke-stazeni/" },
-  { "name": "O nás", "path": "/about-us/" },
-  { "name": "Kontakt", "path": "/kontakty/" }
-]
