@@ -54,6 +54,17 @@ export function extractCanonical(html: string): string | null {
   return null;
 }
 
+export type HtmlLink = { href: string; text: string };
+
+// Every <a href> with its visible text; an image inside the link contributes its alt text.
+export function extractLinks(html: string): HtmlLink[] {
+  return [...html.matchAll(/<a\s[^>]*href="([^"]*)"[^>]*>([\s\S]*?)<\/a>/gi)].map((match) => {
+    const alts = [...match[2].matchAll(/<img\s[^>]*alt="([^"]*)"/gi)].map((alt) => alt[1]);
+    const text = [match[2].replace(/<[^>]+>/g, ' '), ...alts].join(' ');
+    return { href: decodeEntities(match[1]), text: decodeEntities(text).replace(/\s+/g, ' ').trim() };
+  });
+}
+
 export function toPath(url: string, origin: string): string | null {
   const parsed = new URL(url, origin);
   return parsed.origin === new URL(origin).origin ? parsed.pathname : null;

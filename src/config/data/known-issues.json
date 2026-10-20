@@ -58,6 +58,12 @@
       "ref": "finding #21: paragraphs with the 'medium' font size preset are 17.6 px on mobile (limit 18 px)"
     }
   ],
+  "downloadLinkText": [
+    {
+      "path": "/zapominani-senioru-odchod/",
+      "ref": "finding #19: image link to the checklist PDF has no text (no alt)"
+    }
+  ],
   "titleSuffix": {
     "ref": "finding #18: page titles end with 'Méně Starostí', 'Méně starostí' or no site name at all"
   },
