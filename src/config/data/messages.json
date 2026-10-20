@@ -3,5 +3,6 @@
   "emailRequired": "Prosím vyplňte ještě email :)",
   "emailInvalid": "Ve vašem emailu něco chybí. Zkontrolujte ho prosím.",
   "messageRequired": "Prosím napište nám ještě zprávu :)",
-  "mainMenuName": "Hlavní menu"
+  "mainMenuName": "Hlavní menu",
+  "skipLinkName": "Přeskočit na obsah"
 }
