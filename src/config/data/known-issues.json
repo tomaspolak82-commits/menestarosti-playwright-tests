@@ -64,6 +64,12 @@
       "ref": "finding #19: image link to the checklist PDF has no text (no alt)"
     }
   ],
+  "deadExternalLinks": [
+    {
+      "url": "https://nukib.gov.cz/cs/kyberneticka-bezpecnost/](https://nukib.gov.cz/cs/kyberneticka-bezpecnost/",
+      "ref": "finding #24: broken NÚKIB link with leftover Markdown in /bezpecne-heslo-pro-seniory/ (404)"
+    }
+  ],
   "titleSuffix": {
     "ref": "finding #18: page titles end with 'Méně Starostí', 'Méně starostí' or no site name at all"
   },
