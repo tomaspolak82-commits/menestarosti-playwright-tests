@@ -69,3 +69,32 @@ export function toPath(url: string, origin: string): string | null {
   const parsed = new URL(url, origin);
   return parsed.origin === new URL(origin).origin ? parsed.pathname : null;
 }
+
+// The article itself (WordPress "single-entry"), without the related-post cards below it, which are articles too.
+export function extractSingleArticle(html: string): string {
+  return html.match(/<article\s[^>]*class="[^"]*\bsingle-entry\b[^"]*"[^>]*>[\s\S]*?<\/article>/i)?.[0] ?? '';
+}
+
+// Links in post titles (class "entry-title") of a list page such as the article overview.
+export function extractEntryTitleLinks(html: string): HtmlLink[] {
+  return [...html.matchAll(/<(h[1-6])\s[^>]*class="[^"]*\bentry-title\b[^"]*"[^>]*>([\s\S]*?)<\/\1>/gi)].flatMap((match) => extractLinks(match[2]));
+}
+
+// Visible text of <time itemprop="…">, e.g. the publish date of an article.
+export function extractTimeText(html: string, itemprop: string): string | null {
+  for (const match of html.matchAll(/<time\s([^>]*)>([\s\S]*?)<\/time>/gi)) {
+    if (match[1].match(/\bitemprop="([^"]*)"/i)?.[1] !== itemprop) continue;
+    return decodeEntities(match[2].replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ').trim();
+  }
+  return null;
+}
+
+export type HtmlDetails = { summary: string; html: string };
+
+// Collapsible blocks (<details> with a <summary> heading), e.g. the sources section of an article.
+export function extractDetails(html: string): HtmlDetails[] {
+  return [...html.matchAll(/<details[\s>][\s\S]*?<\/details>/gi)].map((match) => {
+    const summary = match[0].match(/<summary[^>]*>([\s\S]*?)<\/summary>/i)?.[1] ?? '';
+    return { summary: decodeEntities(summary.replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ').trim(), html: match[0] };
+  });
+}

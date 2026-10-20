@@ -70,6 +70,16 @@
       "ref": "finding #24: broken NÚKIB link with leftover Markdown in /bezpecne-heslo-pro-seniory/ (404)"
     }
   ],
+  "axeFindings": [
+    {
+      "rule": "target-size",
+      "target": ".dropdown-nav-special-toggle",
+      "ref": "finding #22: submenu arrow next to 'Články' is 16 x 36 px with no space around it (WCAG 2.5.8)"
+    }
+  ],
+  "articleDates": {
+    "ref": "finding #26: articles show no publish or modification date (only in metadata)"
+  },
   "titleSuffix": {
     "ref": "finding #18: page titles end with 'Méně Starostí', 'Méně starostí' or no site name at all"
   },

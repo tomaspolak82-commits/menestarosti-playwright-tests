@@ -5,6 +5,8 @@ export const site = {
   robotsPath: '/robots.txt',
   // WordPress REST API: the list of articles with publish dates (no browser needed).
   postsApiPath: '/wp-json/wp/v2/posts?per_page=100&_fields=link,date,modified',
+  // The scam game runs on its own subdomain: an address outside this site, not a page in pages.ts.
+  scamGameUrl: 'https://poznej-podvod.menestarosti.cz/',
   samplePages: [pages.home, pages.passwordArticle, pages.games, pages.contact],
   // from: old address that must keep redirecting, so it stays as text here.
   redirects: [{ from: '/kontakt/', to: pages.contact }],
