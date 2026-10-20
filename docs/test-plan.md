@@ -62,7 +62,8 @@ Pořadí určuje, co se testuje nejdřív a nejdůkladněji. Při nedostatku ča
 | 4 | Špatná čitelnost a ovladatelnost pro seniory | senior text nepřečte, netrefí tlačítko nebo se ztratí a odejde | čitelnost a přístupnost v plné kontrole, zvětšení úvodní stránky v denním testu |
 | 5 | Nejde najít kontakt nebo vyplnit formulář | senior se nedozví potřebnou pomoc ani se nemůže zeptat | denní test formuláře bez odeslání |
 | 6 | Rozbitý odkaz, článek nebo materiál ke stažení | návštěvník nedostane informaci, kvůli které přišel | plná kontrola všech článků, odkazů a PDF |
-| 7 | Hra nejde spustit nebo dohrát | nepříjemné, ale nikoho neohrozí | spuštění v denním testu, celé kolo v plné kontrole |
+| 7 | Web najde v Googlu a na Facebooku méně lidí | chybějící nebo nejednotný titulek, popis či náhled pro sdílení znamená méně návštěv z vyhledávání a z Facebooku | plná kontrola titulků, popisů, kanonických adres a údajů pro sdílení na všech stránkách |
+| 8 | Hra nejde spustit nebo dohrát | nepříjemné, ale nikoho neohrozí | spuštění v denním testu, celé kolo v plné kontrole |
 
 ## 4. Přístup
 

@@ -3,6 +3,7 @@ export const pages = {
   home: '/',
   articles: '/clanky/',
   games: '/hry-pro-senior/',
+  puzzle: '/skladaci-puzzle/',
   downloads: '/materialy-ke-stazeni/',
   about: '/about-us/',
   contact: '/kontakty/',

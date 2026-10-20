@@ -2,6 +2,9 @@ import { pages } from './pages';
 
 export const site = {
   sitemapIndexPath: '/sitemap_index.xml',
+  robotsPath: '/robots.txt',
+  // WordPress REST API: the list of articles with publish dates (no browser needed).
+  postsApiPath: '/wp-json/wp/v2/posts?per_page=100&_fields=link,date,modified',
   samplePages: [pages.home, pages.passwordArticle, pages.games, pages.contact],
   // from: old address that must keep redirecting, so it stays as text here.
   redirects: [{ from: '/kontakt/', to: pages.contact }],

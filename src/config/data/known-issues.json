@@ -58,6 +58,9 @@
       "ref": "finding #21: paragraphs with the 'medium' font size preset are 17.6 px on mobile (limit 18 px)"
     }
   ],
+  "titleSuffix": {
+    "ref": "finding #18: page titles end with 'Méně Starostí', 'Méně starostí' or no site name at all"
+  },
   "lowContrast": {
     "ref": "finding #23: brand red #ff4d4d has contrast 3.27:1 on white (menu, category links, buttons), limit 4.5:1"
   },
