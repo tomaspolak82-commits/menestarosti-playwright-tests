@@ -5,12 +5,14 @@ import { ContactPage } from './pages/ContactPage';
 import { ContentPage } from './pages/ContentPage';
 import { Footer } from './pages/components/Footer';
 import { MainMenu } from './pages/components/MainMenu';
+import { Readability } from './pages/components/Readability';
 
 type PageFixtures = {
   contentPage: ContentPage;
   contactPage: ContactPage;
   mainMenu: MainMenu;
   footer: Footer;
+  readability: Readability;
 };
 
 export const test = base.extend<PageFixtures>({
@@ -23,7 +25,10 @@ export const test = base.extend<PageFixtures>({
   },
   contentPage: async ({ page }, use) => use(new ContentPage(page)),
   contactPage: async ({ page }, use) => use(new ContactPage(page)),
-  mainMenu: async ({ page, isMobile }, use) => use(new MainMenu(page, isMobile)),
+  // A narrow desktop window (e.g. simulated 200 % zoom) gets the mobile header too.
+  mainMenu: async ({ page, isMobile, viewport }, use) =>
+    use(new MainMenu(page, isMobile || (viewport?.width ?? 0) < site.mobileHeaderBreakpointPx)),
   footer: async ({ page }, use) => use(new Footer(page)),
+  readability: async ({ page }, use) => use(new Readability(page)),
 });
 export { expect } from '@playwright/test';

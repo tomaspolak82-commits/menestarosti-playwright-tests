@@ -48,6 +48,22 @@
   "homepageMobileLcp": {
     "ref": "finding #11: homepage mobile LCP about 3.0 s (limit 2.5 s), pending decision"
   },
+  "mediumFontPreset": [
+    {
+      "path": "/",
+      "ref": "finding #21: paragraphs with the 'medium' font size preset are 17.6 px on mobile (limit 18 px)"
+    },
+    {
+      "path": "/bezpecne-heslo-pro-seniory/",
+      "ref": "finding #21: paragraphs with the 'medium' font size preset are 17.6 px on mobile (limit 18 px)"
+    }
+  ],
+  "lowContrast": {
+    "ref": "finding #23: brand red #ff4d4d has contrast 3.27:1 on white (menu, category links, buttons), limit 4.5:1"
+  },
+  "defaultFontSizeIgnored": {
+    "ref": "finding #2: body text font is clamp(18px, …, 21px), so the browser default font size setting has no effect"
+  },
   "mainMenuName": {
     "ref": "finding #13: main menu is named \"Primary Mobile\" (mobile) and \"Primární\" (desktop) for screen readers, decided \"Hlavní menu\""
   }

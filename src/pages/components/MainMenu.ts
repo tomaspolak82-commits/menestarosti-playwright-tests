@@ -1,7 +1,7 @@
 import type { Locator, Page } from '@playwright/test';
 
-// Desktop shows the navigation in the page header; mobile hides it behind the "Otevřít nabídku" drawer.
-// Neither is found by its accessible name: the names are about to be renamed (known issue).
+// Wide windows show the navigation in the page header; mobile and narrow (zoomed) windows hide it behind
+// the "Otevřít nabídku" drawer. Neither is found by its accessible name: the names are about to be renamed (known issue).
 export class MainMenu {
   readonly openButton: Locator;
   readonly closeButton: Locator;

@@ -9,6 +9,21 @@
 - **Struktura a pravidla projektu (2026-10-16):** Tomáš dodal pravidla (Playwright + TypeScript, DRY, `src/pages|helpers|utils|data|config`, `requirements/` s user stories). Upravená verze půjde do `CLAUDE.md` repa. Odchylky od šablony: tři workflow podle času místo `tests.yml` na push, k tomu `docs/`, `CLAUDE.md`, `.mcp.json`, šablona bug reportu.
 - **Nález (neověřeno v prohlížeči):** úvodní stránka načítá Google tag `GT-KFT2ZZ39` (Site Kit) a v HTML není žádný cookie banner ani režim souhlasu. Ověřit v prohlížeči.
 
+### Stav 2026-10-20: testy čitelnosti (US-004) hotové, čeká na schválení a commit
+
+- US-004 schválena. Testy `src/tests/readability/readability.spec.ts` (AK1–AK6, 6 stránek), Page Object `components/Readability.ts`, data `readability.ts`, `@axe-core/playwright` 4.14.0. Diagram `docs/plany/plan-us-004-readability.html`.
+- Běh v 5 prohlížečích: 168 prošlo (včetně očekávaných selhání), 42 přeskočeno (zvětšení 200 % jen na počítači, AK6 jen Chromium), po doplnění známé chyby u úvodní stránky 0 skutečných selhání. Selhání proti úmyslným chybám doloženo (AK1–AK4).
+- Nové nálezy 21 (písmo „Střední“ 17,6 px), 22 (malé ovládací prvky), 23 (kontrast červené 3,27 : 1) v `private/nalezy.md`.
+
+### Stav 2026-10-19 (Tomáš mimo PC)
+
+- Push z 2026-10-18 proběhl: lokální `main` = `origin/main` (ověřeno `git fetch`). Zápis „push čeká na OK“ níže už neplatí.
+- Návrhy `requirements/US-004.md` až `US-010.md` (čitelnost, články, odkazy, materiály ke stažení, přístupnost, SEO, hry), necommitované, každý má otevřené otázky k diskusi.
+- Ověřeno z veřejného kódu webu (jen čtení, pauza 3 s): údaje doplněné do oddílu „Ověřeno na webu 2026-10-19“ v US-004, 005, 007, 008, 009, 010. Mimo jiné: SEO = Rank Math, Skládačka je na `/skladaci-puzzle/` (chybí v `pages.ts`), Poznej podvod už má `data-testid` a `noindex` (nevydaná?), server odpovídá 1,7–2,8 s.
+- Rozhodnuto (Tomáš): písmo z `px` na `rem` (nález 2 v `private/nalezy.md`), AK6 v US-004 je požadavek.
+- Ověřeno (Context7): Playwright nemá nastavení zvětšení prohlížeče, zvětšení 200 % se simuluje polovičním oknem.
+- Plný běh se zpomalením (1 worker, pauzy, 28,3 min): 177 prošlo (včetně očekávaných selhání), 5 selhalo, 3 přeskočeny. Všech 5 selhání = vypršení spojení s webem 18:49–18:51 (začátek běhu), pak web zase odpovídal. Zpomalení výpadky neodstranilo. V řešení: Tomáš poslal dotaz hostingu, čeká se na odpověď (podrobnosti v `private/nalezy.md`, nález 16).
+
 ### Stav 2026-10-18: úprava struktury (kroky 0–4) hotová, push čeká na OK
 
 - Testy v `src/tests/`, data v `src/config/data/`, `.env` a `.env.example` v `src/config/`. Cesty stránek jen v `src/config/data/pages.ts` (menu, site a footer převedeny z JSON na TS).
