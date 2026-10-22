@@ -24,6 +24,14 @@ test.describe('US-003: Homepage speed on mobile', { tag: '@smoke' }, () => {
     await request.dispose();
   });
 
+  // Measured values in the report: LCP fluctuates around the limit (finding #11), so we track it.
+  test.beforeEach(() => {
+    test.info().annotations.push({
+      type: 'measured (median)',
+      description: `score ${homepage.score}, LCP ${Math.round(homepage.lcpMs)} ms, CLS ${homepage.cls.toFixed(3)}`,
+    });
+  });
+
   test('AK1: performance score is at least the lower limit', async () => {
     expect(homepage.score).toBeGreaterThanOrEqual(perf.homepageMinScore);
   });

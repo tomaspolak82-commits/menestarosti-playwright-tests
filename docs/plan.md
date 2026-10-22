@@ -14,7 +14,22 @@
 - Push z 2026-10-20 proběhl (`main` = `origin/main`, ověřeno), zápis „push čeká na OK“ níže už neplatí.
 - Rozhodnuto (Tomáš): dokončit jen nezbytné = denní běh `@smoke` v GitHubu. Lokální plný běh nahrazuje první ruční běh v CI.
 - `.github/workflows/smoke.yml`: každé ráno 04:00 UTC + ruční spuštění, `BASE_URL` přímo ve workflow, `PAGESPEED_API_KEY` z GitHub Secrets. Diagram `docs/plany/plan-denni-beh.html`.
-- Odloženo (není nezbytné): `full.yml`, `weekly.yml`, report na Pages, odznak, issues ke známým chybám (fáze 9), ochrana proti vypnutí po 60 dnech, `testy.md`, zápis do znalostní databáze.
+- První ruční běh v CI (run 39825579370, 14,8 min): 125 prošlo, 7 přeskočeno, 1 selhal, 1 neproběhl. Selhání: AK2 LCP (US-003), vedený jako známá chyba (nález 11), prošel 2× (i při opakování) → „Expected to fail, but passed“. CLS kvůli tomu neproběhl (sériový režim). Žádný výpadek webu. Klíč není v logu (maskovaný) ani v reportu (ověřeno rozbalením).
+- Oprava úniku klíče (commit 7c39594): při vypršení času Playwright vypisoval adresu požadavku i s klíčem (ověřeno falešným klíčem); chyba se teď nahrazuje vlastní hláškou, trace v souboru PageSpeed vypnutý.
+- LCP lokálně (3 běhy 21:01–21:05): limit nesplněn ani jednou, poslední medián: skóre 79 (spodní hranice 77), LCP 3302 ms (limit 2500), CLS 0,085 (limit 0,1). Web Tomáš neměnil → LCP nejspíš kolísá; rozdíl CI/lokálně možná podle místa měření Googlu (neověřeno).
+- Schváleno (Tomáš): naměřené hodnoty (skóre, LCP, CLS) se zapisují do reportu jako anotace `measured (median)` u každého testu rychlosti.
+
+#### Zbývá dořešit
+
+1. **LCP (nález 11):** pár dní sbírat hodnoty z reportů, pak rozhodnout: kontrolu LCP v denním běhu dočasně přeskočit (můj návrh), nebo nechat. Do té doby může být ranní běh červený ve dny, kdy LCP limit splní („Expected to fail, but passed“).
+2. **Skóre a CLS blízko hranic** (79 vs. 77, 0,085 vs. 0,1): sledovat v reportech, hrozí kolísavě červené běhy i tady.
+3. **Upozornění na selhání:** e-mail o prvním (ručním) běhu nepřišel. Tomáš zkontroluje https://github.com/settings/notifications (oddíl Actions: e-mail, jen selhání, adresa). Ověřit po prvním ranním běhu.
+4. **První naplánovaný běh 2026-10-23:** ověřit, že v Actions je běh „Scheduled“.
+5. **Hosting (nález 16):** odpověď na výpadky webu zatím nepřišla.
+6. **Ubuntu 26:** GitHub od 2026-10-19 převádí `ubuntu-latest` na Ubuntu 26. Když testy začnou padat bez změny kódu, zkontrolovat nejdřív tohle.
+7. **Vypnutí po 60 dnech:** ve veřejném repu GitHub naplánovaný běh vypne po 60 dnech bez aktivity; dokumentace varování neuvádí. Při tichém režimu upozornění se o tom Tomáš nedozví.
+8. **Plný běh všech testů najednou** (`@full`, asi 1,5 h) zatím neproběhl.
+9. Odloženo (není nezbytné): `full.yml`, `weekly.yml`, report na Pages, odznak, issues ke známým chybám (fáze 9), `testy.md`, zápis do znalostní databáze.
 
 ### Stav 2026-10-20 odpoledne: testy US-004 až US-010 napsané a commitnuté, push čeká na OK
 
