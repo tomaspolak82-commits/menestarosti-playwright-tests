@@ -9,6 +9,22 @@
 - **Struktura a pravidla projektu (2026-10-16):** Tomáš dodal pravidla (Playwright + TypeScript, DRY, `src/pages|helpers|utils|data|config`, `requirements/` s user stories). Upravená verze půjde do `CLAUDE.md` repa. Odchylky od šablony: tři workflow podle času místo `tests.yml` na push, k tomu `docs/`, `CLAUDE.md`, `.mcp.json`, šablona bug reportu.
 - **Nález (neověřeno v prohlížeči):** úvodní stránka načítá Google tag `GT-KFT2ZZ39` (Site Kit) a v HTML není žádný cookie banner ani režim souhlasu. Ověřit v prohlížeči.
 
+### Stav 2026-10-22: denní běh v GitHub Actions
+
+- Push z 2026-10-20 proběhl (`main` = `origin/main`, ověřeno), zápis „push čeká na OK“ níže už neplatí.
+- Rozhodnuto (Tomáš): dokončit jen nezbytné = denní běh `@smoke` v GitHubu. Lokální plný běh nahrazuje první ruční běh v CI.
+- `.github/workflows/smoke.yml`: každé ráno 04:00 UTC + ruční spuštění, `BASE_URL` přímo ve workflow, `PAGESPEED_API_KEY` z GitHub Secrets. Diagram `docs/plany/plan-denni-beh.html`.
+- Odloženo (není nezbytné): `full.yml`, `weekly.yml`, report na Pages, odznak, issues ke známým chybám (fáze 9), ochrana proti vypnutí po 60 dnech, `testy.md`, zápis do znalostní databáze.
+
+### Stav 2026-10-20 odpoledne: testy US-004 až US-010 napsané a commitnuté, push čeká na OK
+
+- Commity 7ec7ada až 3ba9e34 (lokálně, necommitnutý zůstává jen `testy.md`). Každá oblast zvlášť spuštěná v 5 prohlížečích, selhání proti úmyslné chybě doloženo.
+- Nové nálezy v `private/nalezy.md`: 24 rozbitý odkaz NÚKIB, 25 občas `lang="en"`, 26 články bez data. Nález 17 (dotyk ve Skládačce) vyvrácen testem.
+- Web během dne 3× přestal odpovídat po rychlé sérii dotazů (nález 16), odpověď hostingu zatím nepřišla.
+- Opraveno: chybný zápis „článek zobrazuje datum“ v US-005 (data patřila náhledům souvisejících článků).
+- Zbývá: plný běh všech testů najednou (riziko výpadku, viz nález 16), push, pak opravy webu přes Přizpůsobit.
+- Subagenti: testy článků napsal subagent general-purpose, testy her fork; testy spouštěl jen hlavní agent (zátěž webu).
+
 ### Stav 2026-10-20: testy čitelnosti (US-004) hotové, čeká na schválení a commit
 
 - US-004 schválena. Testy `src/tests/readability/readability.spec.ts` (AK1–AK6, 6 stránek), Page Object `components/Readability.ts`, data `readability.ts`, `@axe-core/playwright` 4.14.0. Diagram `docs/plany/plan-us-004-readability.html`.
