@@ -9,6 +9,10 @@ import { politeGet, politeHead } from '../../helpers/polite-request';
 import { collectSitePaths } from '../../helpers/site-urls';
 import { extractImageUrls } from '../../utils/html';
 
+// A trace could record the PageSpeed request URL, which contains the API key.
+// Playwright allows this option only for the whole file.
+test.use({ trace: 'off' });
+
 test.describe('US-003: Homepage speed on mobile', { tag: '@smoke' }, () => {
   test.describe.configure({ mode: 'serial', timeout: 300_000 });
   let homepage: PageSpeedResult;

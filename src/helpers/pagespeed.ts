@@ -14,10 +14,16 @@ async function measureOnce(
   url: string,
   strategy: 'mobile' | 'desktop',
 ): Promise<PageSpeedResult> {
-  const response = await request.get(API_URL, {
-    params: { url, strategy, category: 'performance', key: settings.pageSpeedApiKey },
-    timeout: 120_000,
-  });
+  let response;
+  try {
+    response = await request.get(API_URL, {
+      params: { url, strategy, category: 'performance', key: settings.pageSpeedApiKey },
+      timeout: 120_000,
+    });
+  } catch {
+    // Do not rethrow the original error: its call log contains the request URL with the API key.
+    throw new PageSpeedEnvironmentError('PageSpeed API request failed: timeout or network error (environment failure, not a slow site)');
+  }
   if (!response.ok()) {
     // Never include the request URL in the message: it contains the API key.
     throw new PageSpeedEnvironmentError(`PageSpeed API responded ${response.status()} (environment failure, not a slow site)`);
