@@ -83,6 +83,10 @@ Plná kontrola v pátek ráno je záměrná: o víkendu chodí na web nejvíc li
 
 Testy web jen čtou: nic na něm nemění, neodesílají formuláře a nepřihlašují se do administrace.
 
+### Omezení prostředí
+
+Testy běží přímo proti ostrému webu, samostatné testovací prostředí neexistuje. Výsledky proto ovlivňuje i výkon hostingu: server odpovídá zhruba za 2 až 3 sekundy a při rychlé sérii dotazů přestal na chvíli odpovídat. Testy jsou proto záměrně zpomalené (vždy jen jeden test a pauzy mezi dotazy), viz [testovací plán](docs/test-plan.md). Krátkodobá nedostupnost webu se v reportu projeví jako selhání testu, i když nejde o chybu ve funkci webu. Takové selhání vyhodnocuji jako chybu prostředí, ne jako chybu webu.
+
 ### Bezpečnost a statistiky
 
 Součástí testování jsou i pasivní bezpečnostní kontroly. Pouze čtou informace, které web veřejně ukazuje komukoli, a nikdy se nepokoušejí do webu proniknout. Jejich obsah i výsledky jsou záměrně mimo tento veřejný repozitář, protože by mohly posloužit jako návod k útoku. Stejně tak statistiky návštěvnosti. Obojí běží v samostatném soukromém repozitáři.
