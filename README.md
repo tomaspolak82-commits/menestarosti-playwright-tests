@@ -4,9 +4,70 @@ Automatická kontrola webu [menestarosti.cz](https://menestarosti.cz), neziskov�
 
 Projekt zároveň slouží jako ukázka mé práce QA testera: požadavky v podobě user stories, testovací plán, automatické testy, bug reporty a průběžné výsledky.
 
-> **Stav:** projekt je v přípravě. Testovací plán je hotový, první user stories se probírají a testy se teprve píšou.
+> **Stav:** testy pokrývají všech deset user stories a denní rychlý test běží automaticky každé ráno. Automatické spouštění plné a týdenní kontroly se připravuje.
 
 Podrobně je vše popsané v **[testovacím plánu](docs/test-plan.md)**. Tento přehled ho jen shrnuje.
+
+## Co se testuje
+
+| oblast webu | v prohlížeči (5×) | bez prohlížeče | i v denním testu |
+|---|:---:|:---:|---|
+| [US-001](requirements/US-001.md) Dostupnost a navigace | ✔ | ✔ | část |
+| [US-002](requirements/US-002.md) Kontaktní formulář | ✔ | | část |
+| [US-003](requirements/US-003.md) Rychlost webu | | ✔ 🔑 | úvodní stránka |
+| [US-004](requirements/US-004.md) Čitelnost pro seniory | ✔ | | úvodní stránka |
+| [US-005](requirements/US-005.md) Články | ✔ | ✔ | část |
+| [US-006](requirements/US-006.md) Odkazy | | ✔ | |
+| [US-007](requirements/US-007.md) Materiály ke stažení | ✔ | ✔ | část |
+| [US-008](requirements/US-008.md) Přístupnost | ✔ | | část |
+| [US-009](requirements/US-009.md) SEO a sdílení | | ✔ | |
+| [US-010](requirements/US-010.md) Hry | ✔ | | část |
+
+Testy v prohlížeči běží v Chrome, Firefoxu a Safari na počítači, na Androidu a iPhonu. Kontroly bez prohlížeče stahují stránky přímo a běží jednou za běh. Plná kontrola obsahuje všechno z tabulky. 🔑 Rychlost měří Google PageSpeed API přes klíč `PAGESPEED_API_KEY`; ostatní testy klíč nepotřebují.
+
+<details>
+<summary><b>Zobrazit, jak to celé běží (diagram)</b></summary>
+
+```mermaid
+flowchart TB
+    RUN["⏰ <b>Spuštění</b><br/>GitHub Actions každé ráno<br/>plná kontrola: připravuje se<br/>nebo ručně na počítači"]
+
+    subgraph KEYS["🔑 Klíče a nastavení"]
+        SEC["<b>GitHub Secrets</b><br/>PAGESPEED_API_KEY"]
+        ENV["<b>src/config/.env</b><br/>jen lokálně, není v Gitu"]
+    end
+
+    SET["⚙️ <b>settings.ts</b><br/>BASE_URL + PAGESPEED_API_KEY<br/>chybí-li hodnota, test hned skončí<br/>s jasnou zprávou"]
+
+    PW["🎭 <b>Playwright + TypeScript</b><br/>1 test naráz, pauzy 1,5–3 s<br/>web jen čte, formulář nikdy neodešle"]
+
+    BR["🌐 <b>V prohlížeči</b><br/>5×: Chrome · Firefox · Safari<br/>Android · iPhone"]
+    RQ["📡 <b>Bez prohlížeče</b><br/>1× za běh<br/>stránky, odkazy, PDF, SEO"]
+
+    WEB[("🏠 <b>menestarosti.cz</b><br/>stránky · sitemap · robots.txt<br/>WordPress API · hry")]
+    PSI[("📈 <b>Google PageSpeed API</b><br/>měření rychlosti<br/>výpadek služby = chyba prostředí,<br/>ne pomalý web")]
+
+    OUT["📋 <b>Výsledek</b><br/>HTML report v Actions<br/>e-mail při chybě · issues"]
+
+    SEC --> SET
+    ENV --> SET
+    RUN --> PW
+    SET --> PW
+    PW --> BR
+    PW --> RQ
+    BR --> WEB
+    RQ --> WEB
+    RQ -- "🔑 klíč, nikdy se nevypíše<br/>do chyb ani reportu" --> PSI
+    WEB --> OUT
+    PSI --> OUT
+
+    classDef key fill:#fff4d6,stroke:#c99a2e,color:#000
+    classDef target fill:#e3f2ec,stroke:#3c8c6e,color:#000
+    class SEC,ENV,SET key
+    class WEB,PSI target
+```
+
+</details>
 
 ## Co automatizace dělá
 
@@ -20,7 +81,7 @@ Podrobně je vše popsané v **[testovacím plánu](docs/test-plan.md)**. Tento 
 
 Plná kontrola v pátek ráno je záměrná: o víkendu chodí na web nejvíc lidí, takže případná chyba se najde dřív, než ji uvidí.
 
-Všechny testy běží v pěti kombinacích prohlížečů a zařízení: Chrome, Firefox a Safari na počítači, Android a iPhone. Web jen čtou: nic na něm nemění, neodesílají formuláře a nepřihlašují se do administrace.
+Testy web jen čtou: nic na něm nemění, neodesílají formuláře a nepřihlašují se do administrace.
 
 ### Bezpečnost a statistiky
 
@@ -63,7 +124,7 @@ src/utils/           pomocné funkce bez prohlížeče
 src/config/data/     očekávané texty, testovací data a adresy stránek (pages.ts)
 src/config/          nastavení prostředí (.env, .env.example)
 src/tests/           co se testuje, rozdělené podle oblastí webu
-.github/workflows/   kdy se testy spouštějí (připravuje se)
+.github/workflows/   kdy se testy spouštějí (denní test hotový, další se připravují)
 ```
 
 Každá informace je v projektu jen jednou. Když se na webu změní třeba text tlačítka, opravuje se na jediném místě. Pravidla, jak se testy píšou, jsou v [CLAUDE.md](CLAUDE.md).
@@ -76,23 +137,3 @@ Každá informace je v projektu jen jednou. Když se na webu změní třeba text
 | [requirements/](requirements/) | user stories s akceptačními kritérii |
 | [docs/plan.md](docs/plan.md) | plán projektu a průběh rozhodnutí |
 | [docs/plany/plan-menestarosti-tests.html](docs/plany/plan-menestarosti-tests.html) | diagram plánu, otevře se v prohlížeči |
-
-## Spuštění na vlastním počítači
-
-Potřebuješ [Node.js](https://nodejs.org) (verze 24) a Git.
-
-```powershell
-git clone https://github.com/tomaspolak82-commits/menestarosti-playwright-tests.git
-cd menestarosti-playwright-tests
-npm ci
-npx playwright install
-Copy-Item src\config\.env.example src\config\.env
-```
-
-Do souboru `src\config\.env` doplň `BASE_URL=https://menestarosti.cz` (a pro měření rychlosti klíč `PAGESPEED_API_KEY`). Pak:
-
-```powershell
-npm test              # všechny testy
-npm run test:smoke    # jen denní rychlý test
-npm run check         # typová kontrola a ESLint
-```
